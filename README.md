@@ -1,2 +1,18 @@
 # pytorch-cifar10-model
-lr model
+> download
+
+```
+git clone git@github.com:yuxxto56/pytorch-cifar10-model.git
+```
+
+> train model
+
+```
+./train.py --epochs=100
+```
+
+> predict model
+
+```
+./test.py --img_dir = "your imgdir"
+```
