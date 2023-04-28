@@ -26,13 +26,17 @@ def pridiect(model, img_path):
 	with torch.no_grad():
 		output = model(img_predict)
 		classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-		print("{}图片预测结果是：{}".format(img_path, classes[output.argmax().item()]))
+		print("{}|图片预测结果是：{}".format(img_path, classes[output.argmax().item()]))
 
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Pridicting')
 	parser.add_argument('--img_dir', type=str, default="TestImg")
 	opt = parser.parse_args()
+	if os.path.isdir(opt.img_dir) is False:
+		print("{} is not exists.".format(opt.img_dir))
+		exit()
+
 	list_imgs = [opt.img_dir + "/{}".format(img) for img in os.listdir(opt.img_dir)]
 	model = ResNet50()
 	model.load_state_dict(torch.load("./Res/ResNet50-CIFAR10.pth", map_location="cpu")["net"])
